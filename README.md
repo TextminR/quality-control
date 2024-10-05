@@ -8,7 +8,7 @@ the code for searching and replacing the old and false publication years, with t
 
 location for storing and creating diagrams
 
-### src
+### code
 
 where the code will be written
 
@@ -17,14 +17,18 @@ where the code will be written
 here is where jupyter notebook files could be saved
 
 ```
-📦erscheinungsjahre
+📂erscheinungsjahre
+ ┣ 📂code
+ ┃ ┣ 📂data
+ ┃ ┃ ┗ 📜words.txt
+ ┃ ┗ 📂src
+ ┃ ┃ ┣ 📜bookdata.py
+ ┃ ┃ ┣ 📜static.py
+ ┃ ┃ ┗ 📜wiki_search.py
  ┣ 📂diagrams
  ┃ ┣ 📜activity.png
- ┃ ┣ 📜activity.png.bak
  ┃ ┣ 📜diagrams.asta
- ┃ ┣ 📜diagrams.asta.lock
  ┃ ┗ 📜uml.png
- ┣ 📂ipynb
- ┗ 📂src
+ ┗ 📂ipynb
 📜README.md
 ```
