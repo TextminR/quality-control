@@ -16,6 +16,7 @@ where the code will be written
 
 here is where jupyter notebook files could be saved
 
+```
 📦erscheinungsjahre
  ┣ 📂diagrams
  ┃ ┣ 📜activity.png
@@ -25,7 +26,5 @@ here is where jupyter notebook files could be saved
  ┃ ┗ 📜uml.png
  ┣ 📂ipynb
  ┗ 📂src
- ┃ ┣ 📜bookdata.py
- ┃ ┣ 📜static.py
- ┃ ┗ 📜wiki_search.py
 📜README.md
+```
