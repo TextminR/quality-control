@@ -15,3 +15,17 @@ where the code will be written
 ### ipynb
 
 here is where jupyter notebook files could be saved
+
+📦erscheinungsjahre
+ ┣ 📂diagrams
+ ┃ ┣ 📜activity.png
+ ┃ ┣ 📜activity.png.bak
+ ┃ ┣ 📜diagrams.asta
+ ┃ ┣ 📜diagrams.asta.lock
+ ┃ ┗ 📜uml.png
+ ┣ 📂ipynb
+ ┗ 📂src
+ ┃ ┣ 📜bookdata.py
+ ┃ ┣ 📜static.py
+ ┃ ┗ 📜wiki_search.py
+📜README.md
