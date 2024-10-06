@@ -2,9 +2,10 @@ from bs4 import BeautifulSoup
 import requests
 import wikipedia
 from bookdata import Bookdata
-from textobject import TextObject
+import textobject
 
 class WikiSearch:
+
     def __init__(self, book):
         self.texts = [] # list of TextObject type
         self.book = book # Bookdata type
@@ -31,20 +32,10 @@ class WikiSearch:
     def search(self, value):
         self.__search = value
 
-    # found
-    @property
-    def found(self):
-        return self.__found
-
-    @found.setter
-    def found(self, value):
-        self.__found = value
-
     # get the tieles of the wikipedia pages, using the author and the title of the book, with possible publication years
     def get_tetles(self):
-        self.search = wikipedia.search(book.author)
-        self.search += wikipedia.search(book.title)
-        self.search += ["milos", "milos"]
+        self.search = wikipedia.search(self.__book.author)
+        self.search += wikipedia.search(self.__book.title)
         self.__search = set(self.__search)
 
     # get the site using one of the saved titles
@@ -58,9 +49,15 @@ class WikiSearch:
         soup = BeautifulSoup(response.content, 'html.parser')
         content = soup.find(id="content").__str__()
 
-        self.texts.append(TextObject(search, self))
+        self.texts.append(textobject.TextObject(content, self))
 
         return content
+
+    def next_search(self):
+        if len(self.search) > 0:
+            self.get_html(self.search.pop())
+        else:
+            return None
 
     # # get the site using one of the saved titles
     # def get_html(self, lang = "de"):
@@ -75,14 +72,14 @@ class WikiSearch:
     #     content = soup.find(id="content").__str__()
     #     return content
     
-    # checks if a part of the title is in the content, if so return True
-    def find_title(self, content):
-        for p in self.title.split(" "):
-            # check if a part of the title is in the content of the website
-            if p in content:
-                return True
-                # print the deatils of the search
-                # print("Search: " + s + "\nWord in Text: " + p)
+    # # checks if a part of the title is in the content, if so return True
+    # def find_title(self, content):
+    #     for p in self.title.split(" "):
+    #         # check if a part of the title is in the content of the website
+    #         if p in content:
+    #             return True
+    #             # print the deatils of the search
+    #             # print("Search: " + s + "\nWord in Text: " + p)
 
     # # search one of the search words
     # def search_each(self, search, lang = "de"):
@@ -98,10 +95,18 @@ class WikiSearch:
     #         self.search_each(s, lang[1])
 
     def __str__(self) -> str:
-        text = self.__book.__str__()
-        text += "\n"
-        for s in self.__search:
-            text += s + "; "
+        text = "WikiSearch:\n"
+        text += "\tBook: " + self.__book.__str__()
+        text += "\n\t" + "Number of wikipedia search titles: " + str(len(self.search))
+        text += "\n\tTexts: " + str(len(self.texts))
+        textobject = []
+        for t in self.texts:
+            textobject.append(t.__str__())
+        for t in textobject:
+            for i in t.split("\n"):
+                if i == 0:
+                    continue
+                text += "\n\t" + i
         return text
 
 
@@ -110,3 +115,6 @@ if __name__ == "__main__":
     w = WikiSearch(book)
     print(w)
     print(type(w.search))
+    print(type(w.book))
+    w.next_search()
+    print(w)
