@@ -21,14 +21,20 @@ here is where jupyter notebook files could be saved
  ┣ 📂code
  ┃ ┣ 📂data
  ┃ ┃ ┗ 📜words.txt
- ┃ ┗ 📂src
+ ┃ ┣ 📂src
  ┃ ┃ ┣ 📜bookdata.py
+ ┃ ┃ ┣ 📜main.py
  ┃ ┃ ┣ 📜static.py
+ ┃ ┃ ┣ 📜test.py
+ ┃ ┃ ┣ 📜textobject.py
+ ┃ ┃ ┣ 📜textpart.py
+ ┃ ┃ ┣ 📜title_module.py
  ┃ ┃ ┗ 📜wiki_search.py
+ ┃ ┗ 📂test
  ┣ 📂diagrams
  ┃ ┣ 📜activity.png
  ┃ ┣ 📜diagrams.asta
- ┃ ┗ 📜uml.png
+ ┃ ┣ 📜uml.png
  ┗ 📂ipynb
 📜README.md
 ```
