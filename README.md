@@ -1,4 +1,4 @@
-# textminr_clean
+# quality-control
 
 ## Erscheinungsjahre
 
@@ -17,24 +17,27 @@ where the code will be written
 here is where jupyter notebook files could be saved
 
 ```
-📂erscheinungsjahre
- ┣ 📂code
- ┃ ┣ 📂data
- ┃ ┃ ┗ 📜words.txt
- ┃ ┣ 📂src
- ┃ ┃ ┣ 📜bookdata.py
- ┃ ┃ ┣ 📜main.py
- ┃ ┃ ┣ 📜static.py
- ┃ ┃ ┣ 📜test.py
- ┃ ┃ ┣ 📜textobject.py
- ┃ ┃ ┣ 📜textpart.py
- ┃ ┃ ┣ 📜title_module.py
- ┃ ┃ ┗ 📜wiki_search.py
- ┃ ┗ 📂test
- ┣ 📂diagrams
- ┃ ┣ 📜activity.png
- ┃ ┣ 📜diagrams.asta
- ┃ ┣ 📜uml.png
- ┗ 📂ipynb
-📜README.md
+ erscheinungsjahre
+┣  code
+┃ ┣  data
+┃ ┃ ┗  words.txt
+┃ ┣  src
+┃ ┃ ┣  bookdata.py
+┃ ┃ ┣  main.py
+┃ ┃ ┣  static.py
+┃ ┃ ┣  test.py
+┃ ┃ ┣  textobject.py
+┃ ┃ ┣  textpart.py
+┃ ┃ ┣  title_module.py
+┃ ┃ ┗  wiki_search.py
+┃ ┗  test
+┣  diagrams
+┃ ┣  activity.png
+┃ ┣  activity.png.bak
+┃ ┣  diagrams.asta
+┃ ┣  diagrams.asta.lock
+┃ ┣  uml.png
+┃ ┗  uml.png.bak
+┗  ipynb
+ README.md
 ```
