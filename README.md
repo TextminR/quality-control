@@ -22,14 +22,6 @@ here is where jupyter notebook files could be saved
  ┃ ┣ 📂data
  ┃ ┃ ┗ 📜words.txt
  ┃ ┣ 📂src
- ┃ ┃ ┣ 📂__pycache__
- ┃ ┃ ┃ ┣ 📜bookdata.cpython-312.pyc
- ┃ ┃ ┃ ┣ 📜static.cpython-312.pyc
- ┃ ┃ ┃ ┣ 📜textobject.cpython-312.pyc
- ┃ ┃ ┃ ┣ 📜textpart.cpython-312.pyc
- ┃ ┃ ┃ ┣ 📜title.cpython-312.pyc
- ┃ ┃ ┃ ┣ 📜title_module.cpython-312.pyc
- ┃ ┃ ┃ ┗ 📜wiki_search.cpython-312.pyc
  ┃ ┃ ┣ 📜bookdata.py
  ┃ ┃ ┣ 📜main.py
  ┃ ┃ ┣ 📜static.py
@@ -37,9 +29,7 @@ here is where jupyter notebook files could be saved
  ┃ ┃ ┣ 📜textobject.py
  ┃ ┃ ┣ 📜textpart.py
  ┃ ┃ ┣ 📜title_module.py
- ┃ ┃ ┣ 📜wiki_search.py
- ┃ ┃ ┣ 📜year_data.py
- ┃ ┃ ┗ 📜year_list.py
+ ┃ ┃ ┗ 📜wiki_search.py
  ┃ ┗ 📂test
  ┣ 📂diagrams
  ┃ ┣ 📜activity.png
