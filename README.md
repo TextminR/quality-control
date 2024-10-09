@@ -29,11 +29,16 @@ here is where jupyter notebook files could be saved
  ┃ ┃ ┣ 📜textobject.py
  ┃ ┃ ┣ 📜textpart.py
  ┃ ┃ ┣ 📜title_module.py
- ┃ ┃ ┗ 📜wiki_search.py
+ ┃ ┃ ┣ 📜wiki_search.py
+ ┃ ┃ ┣ 📜year_data.py
+ ┃ ┃ ┗ 📜year_list.py
  ┃ ┗ 📂test
+ ┃ ┃ ┣ 📜textpart_test.py
+ ┃ ┃ ┗ 📜title_test.py
  ┣ 📂diagrams
  ┃ ┣ 📂editor
- ┃ ┃ ┗ 📜diagrams.asta
+ ┃ ┃ ┣ 📜concept.asta
+ ┃ ┃ ┗ 📜live.asta
  ┃ ┗ 📂export
  ┃ ┃ ┣ 📜activity.png
  ┃ ┃ ┗ 📜uml.png
