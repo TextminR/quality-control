@@ -1,23 +1,14 @@
 from title_module import Title
-import textobject
+from year_list import YearList
+from year_data import YearData
 
 class TextPart:
-    def __init__(self, textobject, text, title):
-        self.textobject = textobject
+    def __init__(self, text, title):
         self.__text = text
         self.__titles = set()
         self.__titles.add(title)
-
-    @property
-    def textobject(self):
-        return self.__textobject
-    
-    @textobject.setter
-    def textobject(self, value):
-        if type(value) is textobject.TextObject:
-            self.__textobject = value
-        else:
-            raise ValueError("The value is not a TextObject object")
+        self.__year_list = YearList()
+        self.__title_locations = set()
 
     @property
     def text(self):
@@ -46,9 +37,25 @@ class TextPart:
     def year_list(self, value):
         self.__year_list = value
 
+    @property
+    def title_locations(self):
+        return self.__title_locations
+
+    @title_locations.setter
+    def title_locations(self, value):
+        self.__title_locations = value
+        pass
+    
+    def calculate_locations(self):
+        for t in self.titles:
+            locations.add(t.start)
+            locations.add(t.end)
+        self.__title_locations = locations
+        return locations
+
     # looks for all occurences of the title in the text
-    def find_all_titles(self):
-        for title_part in self.textobject.wiki.book.title_clean.split(" "):
+    def find_all_titles(self, title):
+        for title_part in title.split(" "):
             n = 0
             while True:
                 n = self.text.find(title_part, n)
@@ -57,11 +64,48 @@ class TextPart:
                 title = Title(n, n + len(title_part))
                 self.titles.add(title)
                 n += len(title_part)
+        self.calculate_locations()
         return len(self.titles)
 
+    def find_years(self):
+        n_digites = 0
+        year_start, year_end = 0, 0
+        year = ""
+        for i in range(0, len(self.__text)):
+            c = self.__text[i]
+            if c.isnumeric():
+                if n_digites > 4:
+                    n_digites = 0
+                    year = ""
+                    continue
+                if n_digites == 0:
+                    year_start = i
+                n_digites += 1
+                year += c
+            else:
+                if n_digites > 0 and n_digites <= 4:
+                    year_end = i - 1
+                    try:
+                        year = int(year)
+
+                        distance = self.calculate_distance(year_start, year_end)
+
+                        year_data = YearData(year, year_start, year_end, distance)
+                        self.__year_list.add_year(year_data)
+                    except:
+                        raise TypeError("could not parse, year is not a number")
+                n_digites = 0
+                year = ""
+        return self.__year_list
+
+    def calculate_distance(self, year_start, year_end):
+        closest = min(locations, key=lambda x: min(abs(x - year_start), abs(x - year_end)))
+
+        return min(abs(closest - year_start), abs(closest - year_end))
+
     def __str__(self):
-        text = "TextPart: \n"
-        text_beginning = "\t" + self.text[list(self.titles)[0].start-10: list(self.titles)[0].end+10] + "..."
+        text = "TextPart:\n"
+        text_beginning = "\ttext: " + self.text[list(self.titles)[0].start-10: list(self.titles)[0].end+10] + "..."
         text_beginning  = text_beginning.replace("\n", " ")
         text += text_beginning
         text += "\n\tTitles: " + str(len(self.titles))

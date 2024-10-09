@@ -7,9 +7,18 @@ import textobject
 class WikiSearch:
 
     def __init__(self, book):
-        self.texts = [] # list of TextObject type
+        self.__textobjects = [] # list of TextObject type
         self.book = book # Bookdata type
         self.get_tetles()
+
+    # book
+    @property
+    def textobject(self):
+        return self.__textobject
+
+    @textobject.setter
+    def textobject(self, value):
+        self.__textobject = value
 
     # book
     @property
@@ -49,7 +58,7 @@ class WikiSearch:
         soup = BeautifulSoup(response.content, 'html.parser')
         content = soup.find(id="content").__str__()
 
-        self.texts.append(textobject.TextObject(content, self))
+        self.textobjects.append(textobject.TextObject(content))
 
         return content
 
@@ -98,9 +107,9 @@ class WikiSearch:
         text = "WikiSearch:\n"
         text += "\tBook: " + self.__book.__str__()
         text += "\n\t" + "Number of wikipedia search titles: " + str(len(self.search))
-        text += "\n\tTexts: " + str(len(self.texts))
+        text += "\n\tTexts: " + str(len(self.textobjects))
         textobject = []
-        for t in self.texts:
+        for t in self.textobjects:
             textobject.append(t.__str__())
         for t in textobject:
             for i in t.split("\n"):

@@ -54,7 +54,3 @@ class YearData:
         if self.score is not None:
             text += f" | {self.score}"
         return text
-
-if __name__ == "__main__":
-    y = YearData(2011, 11, 14, 20, 99.9)
-    print(y)

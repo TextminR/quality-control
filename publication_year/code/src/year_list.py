@@ -20,12 +20,3 @@ class YearList:
         for y in self.year_data:
             text += y.__str__() + "; "
         return text
-
-if __name__ == "__main__":
-    yl = YearList()
-    y1 = YearData(1911, 11, 14, 10, 99.9)
-    y2 = YearData(1912, 22, 25, 30, 89.9)
-    yl.add_year(y1)
-    yl.add_year(y2)
-    print(yl)
-

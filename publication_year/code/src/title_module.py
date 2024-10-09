@@ -28,3 +28,6 @@ class Title:
     
     def __eq__(self, other) -> bool:
         return self.start == other.start and self.end == other.end
+
+    def __lt__(self, other) -> bool:
+        return self.start < other.start

@@ -23,3 +23,6 @@ print(text)
 
 print(list(set1)[1])
 print(type(set1))
+
+for s in set1:
+    print(s.start)
