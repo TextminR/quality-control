@@ -43,4 +43,6 @@ here is where jupyter notebook files could be saved
  ┃ ┃ ┣ 📜activity.png
  ┃ ┃ ┗ 📜uml.png
  ┗ 📂ipynb
+📜.gitignore
+📜README.md
 ```
