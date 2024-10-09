@@ -1,10 +1,11 @@
 
 class YearData:
-    def __init__(self, year, start, end, distance):
+    def __init__(self, year, start, end, distance, score=None):
         self.__year = year
         self.__start = start
         self.__end = end
         self.__distance = distance
+        self.__score = score
     
     @property
     def year(self):
@@ -47,5 +48,13 @@ class YearData:
         self.__score = value
 
     # Year: 2029 (11 - 14), Distance: 15, Score: 0.0
+    # 2011 (11 - 14) 15: 99.9
     def __str__(self):
-        return f"Year: {self.year} ({self.start} - {self.end}), Distance: {self.distance}, Score: {self.score}"
+        text = f"{self.year} ({self.start} - {self.end}) {self.distance}"
+        if self.score is not None:
+            text += f" | {self.score}"
+        return text
+
+if __name__ == "__main__":
+    y = YearData(2011, 11, 14, 20, 99.9)
+    print(y)
