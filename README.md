@@ -32,11 +32,10 @@ here is where jupyter notebook files could be saved
  ┃ ┃ ┗ 📜wiki_search.py
  ┃ ┗ 📂test
  ┣ 📂diagrams
- ┃ ┣ 📜activity.png
- ┃ ┣ 📜activity.png.bak
- ┃ ┣ 📜diagrams.asta
- ┃ ┣ 📜diagrams.asta.lock
- ┃ ┣ 📜uml.png
- ┃ ┗ 📜uml.png.bak
+ ┃ ┣ 📂editor
+ ┃ ┃ ┗ 📜diagrams.asta
+ ┃ ┗ 📂export
+ ┃ ┃ ┣ 📜activity.png
+ ┃ ┃ ┗ 📜uml.png
  ┗ 📂ipynb
 ```
