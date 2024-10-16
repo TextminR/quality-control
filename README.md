@@ -25,7 +25,6 @@ here is where jupyter notebook files could be saved
  ┃ ┃ ┣ 📜bookdata.py
  ┃ ┃ ┣ 📜main.py
  ┃ ┃ ┣ 📜static.py
- ┃ ┃ ┣ 📜test.py
  ┃ ┃ ┣ 📜textobject.py
  ┃ ┃ ┣ 📜textpart.py
  ┃ ┃ ┣ 📜title_module.py
