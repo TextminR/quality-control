@@ -1,8 +1,9 @@
 from bs4 import BeautifulSoup
 import requests
 import wikipedia
+
 from bookdata import Bookdata
-import textobject
+from textobject import TextObject
 
 class WikiSearch:
 
@@ -13,12 +14,12 @@ class WikiSearch:
 
     # book
     @property
-    def textobject(self):
-        return self.__textobject
+    def textobjects(self):
+        return self.__textobjects
 
-    @textobject.setter
-    def textobject(self, value):
-        self.__textobject = value
+    @textobjects.setter
+    def textobjects(self, value):
+        self.__textobjects = value
 
     # book
     @property
@@ -58,7 +59,7 @@ class WikiSearch:
         soup = BeautifulSoup(response.content, 'html.parser')
         content = soup.find(id="content").__str__()
 
-        self.textobjects.append(textobject.TextObject(content))
+        self.textobjects.append(TextObject(content))
 
         return content
 
@@ -68,50 +69,15 @@ class WikiSearch:
         else:
             return None
 
-    # # get the site using one of the saved titles
-    # def get_html(self, lang = "de"):
-    #     # replace the spaces with the _ so it can be used in the url
-    #     author = self.book.author
-    #     author.replace(" ", "_")
-    #     response = requests.get(
-    #         url="https://" + lang + ".wikipedia.org/wiki/" + author,
-    #     )
-    #     # get the content of the website
-    #     soup = BeautifulSoup(response.content, 'html.parser')
-    #     content = soup.find(id="content").__str__()
-    #     return content
-    
-    # # checks if a part of the title is in the content, if so return True
-    # def find_title(self, content):
-    #     for p in self.title.split(" "):
-    #         # check if a part of the title is in the content of the website
-    #         if p in content:
-    #             return True
-    #             # print the deatils of the search
-    #             # print("Search: " + s + "\nWord in Text: " + p)
-
-    # # search one of the search words
-    # def search_each(self, search, lang = "de"):
-    #     content = WikiSearch.gethtml(search, lang)
-    #     if WikiSearch.find_title(content):
-    #         # add the content to the found list
-    #         self.found[search + lang] = content
-
-    # def search_all(self):
-    #     for s in self.search:
-    #         lang = ["de", "en"]
-    #         self.search_each(s, lang[0])
-    #         self.search_each(s, lang[1])
-
     def __str__(self) -> str:
         text = "WikiSearch:\n"
         text += "\tBook: " + self.__book.__str__()
         text += "\n\t" + "Number of wikipedia search titles: " + str(len(self.search))
         text += "\n\tTexts: " + str(len(self.textobjects))
-        textobject = []
+        textobject_string = []
         for t in self.textobjects:
-            textobject.append(t.__str__())
-        for t in textobject:
+            textobject_string.append(t.__str__())
+        for t in textobject_string:
             for i in t.split("\n"):
                 if i == 0:
                     continue

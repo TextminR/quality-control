@@ -47,10 +47,13 @@ class YearData:
     def score(self, value):
         self.__score = value
 
+    def __hash__(self):
+        return hash((self.year, self.start, self.end, self.distance, self.score))
+
     # Year: 2029 (11 - 14), Distance: 15, Score: 0.0
     # 2011 (11 - 14) 15: 99.9
     def __str__(self):
-        text = f"{self.year} ({self.start} - {self.end}) {self.distance}"
+        text = f"Y:{self.year} ({self.start} - {self.end}) {self.distance}"
         if self.score is not None:
             text += f" | {self.score}"
         return text

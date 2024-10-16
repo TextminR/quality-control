@@ -48,10 +48,9 @@ class TextPart:
     
     def calculate_locations(self):
         for t in self.titles:
-            locations.add(t.start)
-            locations.add(t.end)
-        self.__title_locations = locations
-        return locations
+            self.__title_locations.add(t.start)
+            self.__title_locations.add(t.end)
+        return self.__title_locations
 
     # looks for all occurences of the title in the text
     def find_all_titles(self, title):
@@ -99,7 +98,7 @@ class TextPart:
         return self.__year_list
 
     def calculate_distance(self, year_start, year_end):
-        closest = min(locations, key=lambda x: min(abs(x - year_start), abs(x - year_end)))
+        closest = min(self.__title_locations, key=lambda x: min(abs(x - year_start), abs(x - year_end)))
 
         return min(abs(closest - year_start), abs(closest - year_end))
 
