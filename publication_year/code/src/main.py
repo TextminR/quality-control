@@ -3,7 +3,7 @@ from wiki_search import WikiSearch
 
 
 if __name__ == "__main__":
-    book = Bookdata("Kleist, Heinrich von", "Ausgewählte Schriften", 1777, 1777, 1811)
+    book = Bookdata("Droysen, Johann Gustav", "Geschichte Alexanders des Grossen", 1808, 1808, 1884)
     w = WikiSearch(book)
     # takes a new Wikipedia site and saves it
     w.next_search()
@@ -16,9 +16,11 @@ if __name__ == "__main__":
         print(w.textobjects[0].part[0])
         print("Number of Titles in the part: " + str(w.textobjects[0].part[0].find_all_titles(book.title_clean)))
         year_list = w.textobjects[0].part[0].find_years()
+        print("year_list:")
         print(year_list.__str__())
         year_list.clear_years(book.birth, book.death)
-        print(book.birth, book.death)
+        # print(book.birth, book.death)
+        print("year_list.clear_years():")
         print(year_list.__str__())
     else:
         print("False")

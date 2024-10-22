@@ -9,6 +9,8 @@ class Static:
     def get_words(cls):
         if cls.__words is None:
             cls.set_words()
+            if cls.__words is None:
+                print("could not get the words")
         return cls.__words
 
     # Class method to set the class attribute

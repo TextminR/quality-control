@@ -35,10 +35,15 @@ class Bookdata:
 
     @title_clean.setter
     def title_clean(self, value):
-        split_title = re.sub(r'[^a-zA-Z0-9\s]', '', self.title)
+        # the original book title is copied, only letters
+        split_title = re.sub(r'[^a-zA-Z0-9\s]', '', value) # value should be same as self.title
+        # the newly selected title will be split in single words
         split_title = split_title.split()
+        words = None
+        # the unimportant words will be removed
         words = Static.get_words()
-        split_title = [wort for wort in split_title if wort.lower().strip(",.!?") not in words]
+        split_title = [word for word in split_title if word.lower() not in words]
+        # print(split_title)
         title_clean = " ".join(split_title)
         self.__title_clean = title_clean
 
@@ -77,6 +82,6 @@ class Bookdata:
 
 
 if __name__ == "__main__":
-    book = Bookdata("Keller, Helen", "die: Das Geschichte: meines lebens", 1880, 1880, 1968)
+    book = Bookdata("Keller, Helen", "di.e: ,Das Ge,schichte: meines lebens", 1880, 1880, 1968)
     print(book)
     print(book.title_clean)

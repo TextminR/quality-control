@@ -28,8 +28,8 @@ class TestTextPartModule(unittest.TestCase):
 
     def test_find_years(self):
         find_years = self.part.find_years()
-        self.assertEqual(find_years.year_data[0].__str__(), "2010 (64 - 67) 9")
-        self.assertEqual(find_years.year_data[1].__str__(), "2019 (132 - 135) 77")
+        self.assertEqual(find_years.year_data.pop().__str__(), "Y:2010 (64 - 67) 9")
+        self.assertEqual(find_years.year_data.pop().__str__(), "Y:2019 (132 - 135) 77")
 
     def test_calculate_distance(self):
         distance = self.part.calculate_distance(64, 67)
