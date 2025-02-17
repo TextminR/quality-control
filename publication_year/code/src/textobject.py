@@ -30,6 +30,14 @@ class TextObject:
         self.text = soup.get_text()
     
     def find_title(self, title):
+        n = self.text.find(title)
+        if n != -1:
+            title_o = Title(n, n + len(title))
+            self.remove_part(title_o, title)
+            return True
+        return False
+        
+    def find_title_part(self, title):
         for title_part in title.split(" "):
             n = self.text.find(title_part)
             if n != -1:
@@ -39,13 +47,23 @@ class TextObject:
         return False
         
     def remove_part(self, title, word):
-        margin = 250
-        text_part = self.text[title.start - margin: title.end + margin]
+        margin = 150
+        text_len = len(self.text)
+        start = title.start - margin
+        if start < 0:
+            start = 0
+        end = title.end + margin
+        if end > text_len:
+            end = text_len
+        text_part = self.text[start:end]
         n = text_part.find(word)
         title = Title(n, n + len(word))
         self.__part.append(textpart.TextPart(text_part, title))
         self.text = self.text.replace(text_part, "")
+        text_len = len(self.text)
 
+    def get_last_part(self):
+        return self.__part[-1]
 
     def __str__(self):
         text = "TextObject: \n"

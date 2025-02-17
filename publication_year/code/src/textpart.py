@@ -1,6 +1,8 @@
 from title_module import Title
 from year_list import YearList
 from year_data import YearData
+from extract import ExtractInterface
+from manual import Manual
 
 class TextPart:
     def __init__(self, text, title):
@@ -45,6 +47,15 @@ class TextPart:
     def title_locations(self, value):
         self.__title_locations = value
         pass
+
+    @property
+    def line_locations(self):
+        return self.__line_locations
+
+    @line_locations.setter
+    def line_locations(self, value):
+        self.__line_locations = value
+        pass
     
     def calculate_locations(self):
         for t in self.titles:
@@ -66,41 +77,57 @@ class TextPart:
         self.calculate_locations()
         return len(self.titles)
 
-    def find_years(self):
-        n_digites = 0
-        year_start, year_end = 0, 0
-        year = ""
-        for i in range(0, len(self.__text)):
-            c = self.__text[i]
-            if c.isnumeric():
-                if n_digites > 4:
-                    n_digites = 0
-                    year = ""
-                    continue
-                if n_digites == 0:
-                    year_start = i
-                n_digites += 1
-                year += c
-            else:
-                if n_digites > 0 and n_digites <= 4:
-                    year_end = i - 1
-                    try:
-                        year = int(year)
-
-                        distance = self.calculate_distance(year_start, year_end)
-
-                        year_data = YearData(year, year_start, year_end, distance)
-                        self.__year_list.add_year(year_data)
-                    except:
-                        raise TypeError("could not parse, year is not a number")
-                n_digites = 0
-                year = ""
+    def find_years(self, extract: ExtractInterface = None):
+        if extract == None:
+            extract = Manual()
+        self.year_list = extract.find_years(self.__text)
+        self.calculate_distance()
+        self.calculate_line_distance()
         return self.__year_list
 
-    def calculate_distance(self, year_start, year_end):
-        closest = min(self.__title_locations, key=lambda x: min(abs(x - year_start), abs(x - year_end)))
+    def calculate_distance(self):
+        for year in self.__year_list.year_data:
+            year_start = year.start
+            year_end = year.end
 
-        return min(abs(closest - year_start), abs(closest - year_end))
+            closest = min(self.__title_locations, key=lambda x: min(abs(x - year_start), abs(x - year_end)))
+
+            year.distance = min(abs(closest - year_start), abs(closest - year_end))
+
+    # calculates the number of line breaks between the year and the title
+    def calculate_line_distance(self):
+        self.find_lines()
+        for year in self.__year_list.year_data:
+            line_distance = 0
+
+            # if title after year
+            if year.end + year.distance in self.__title_locations:
+                title_location = year.end + year.distance
+                for l in self.__line_locations:
+                    # if line is between year and title
+                    if l > year.end and l < title_location:
+                        line_distance += 1
+
+            # if title befor year
+            elif year.start - year.distance in self.__title_locations:
+                title_location = year.start - year.distance
+                for l in self.__line_locations:
+                    # if line is between year and title
+                    if l < year.start and l > title_location:
+                        line_distance += 1
+
+            year.line_distance = line_distance
+
+    def find_lines(self):
+        n = 0
+        locations = set()
+        while True:
+            n = self.text.find("\n", n)
+            if n == -1:
+                break
+            locations.add(n)
+            n += 1
+        self.__line_locations = locations
 
     def __str__(self):
         text = "TextPart:\n"

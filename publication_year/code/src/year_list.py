@@ -24,6 +24,24 @@ class YearList:
         self.__year_data = new_year_data
         return self
 
+    def combine_year_data(self, other):
+        for year in other.year_data:
+            self.__year_data.add(year)
+        return self
+
+    def find_best_year(self):
+        if self is None or len(self.__year_data) == 0:
+            print("No year data found")
+            return None
+        for year in self.__year_data:
+            year.calculate_score()
+        return max(self.__year_data, key=lambda x: x.score)
+
+    def contains(self, year):
+        for y in self.year_data:
+            if y.year == year:
+                return True
+
     def __str__(self):
         text = ""
         for y in self.year_data:

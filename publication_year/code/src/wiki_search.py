@@ -63,11 +63,14 @@ class WikiSearch:
 
         return content
 
+    def get_last_text(self):
+        return self.textobjects[-1]
+
     def next_search(self):
         if len(self.search) > 0:
             self.get_html(self.search.pop())
-        else:
-            return None
+            return True
+        return False
 
     def __str__(self) -> str:
         text = "WikiSearch:\n"
